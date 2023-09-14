@@ -1,0 +1,21 @@
+.nav-title {
+    font-size: 30px;
+}
+
+.nav-link {
+    font-size: 20px;
+}
+
+@media (min-width: 992px) {
+    .nav-title {
+        margin-right: 100px;
+    }
+
+    .nav-item:not(:last-child) {
+        margin-right: 80px;
+    }
+
+    .nav-link {
+        font-size: 20px;
+    }
+}
