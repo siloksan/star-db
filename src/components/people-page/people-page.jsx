@@ -2,20 +2,26 @@ import React from 'react';
 import ItemList from "../item-list/item-list";
 import PersonDetails from "../person-details";
 
-const id = '10'
+import './people-page.css'
+import ErrorIndicate from "../error-indicate";
+import {ErrorBoundary} from "react-error-boundary";
 
-const PeoplePage = ({ personId, updatePersonId}) => {
+// const id = '10'
+
+const Page = ({ selectedId, updateSelectedId}) => {
 
 	return (
-		<div className="row mb2">
-			<div className="col-md-4">
-				<ItemList updatePersonId={updatePersonId}/>
+		<ErrorBoundary FallbackComponent={ErrorIndicate}>
+			<div className="row mb2 people-page">
+				<div className="col-md-4">
+					<ItemList updateSelectedId={updateSelectedId}/>
+				</div>
+				<div className="col">
+					<PersonDetails selectedId={selectedId}/>
+				</div>
 			</div>
-			<div className="col">
-				<PersonDetails personId={personId}/>
-			</div>
-		</div>
+		</ErrorBoundary>
 	);
 };
 
-export default PeoplePage;
+export default Page;
