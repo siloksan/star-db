@@ -1,16 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ItemList from "../item-list/item-list";
 import PersonDetails from "../person-details";
 
-const id = Math.floor(Math.random() * 19) + 1
+const id = '10'
 
-const PeoplePage = () => {
-
-	const [personId, setPersonId] = useState(id)
-
-	const updatePersonId = (id) => {
-		setPersonId(id)
-	}
+const PeoplePage = ({ personId, updatePersonId}) => {
 
 	return (
 		<div className="row mb2">
