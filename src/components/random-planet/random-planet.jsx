@@ -28,7 +28,7 @@ const RandomPlanet = () => {
 	}
 
 	const updatePlanet = () => {
-		const id = Math.floor(Math.random() * 19) + 1
+		const id = Math.floor(Math.random() * 17) + 2
 		swapiService
 			.getPlanet(id)
 			.then((planet) => {
@@ -39,7 +39,7 @@ const RandomPlanet = () => {
 
 	useEffect(() => {
 		// console.log('effect')
-		const interval = setInterval(() => updatePlanet(), 6000)
+		const interval = setInterval(() => updatePlanet(), 10000)
 
 		return () => clearInterval(interval)
 	}, [])

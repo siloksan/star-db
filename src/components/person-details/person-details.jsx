@@ -3,6 +3,7 @@ import './person-details.css'
 import SwapiService from "../../services/swapi-service";
 import Spinner from "../spinner";
 import ErrorIndicate from "../error-indicate";
+import ErrorButtons from "../error-buttons";
 
 const initialState = {
 	person: {},
@@ -35,6 +36,7 @@ const PersonDetails = ({ personId }) => {
 	}
 
 	useEffect(() => {
+		setState({...state, loading: true})
 		updatePerson(personId)
 	}, [personId])
 
@@ -70,6 +72,7 @@ const PersonDetailsView = ({ person: { id, name, gender, birthYear, eyeColor } }
 						<li className="list-group-item">{eyeColor}</li>
 					</ul>
 				</div>
+				<ErrorButtons />
 			</div>
 		</div>
 	)

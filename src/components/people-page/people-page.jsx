@@ -8,20 +8,20 @@ import {ErrorBoundary} from "react-error-boundary";
 
 // const id = '10'
 
-const Page = ({ selectedId, updateSelectedId}) => {
+const PeoplePage = ({personId, updatePersonId}) => {
 
 	return (
 		<ErrorBoundary FallbackComponent={ErrorIndicate}>
 			<div className="row mb2 people-page">
 				<div className="col-md-4">
-					<ItemList updateSelectedId={updateSelectedId}/>
+					<ItemList updatePersonId={updatePersonId}/>
 				</div>
 				<div className="col">
-					<PersonDetails selectedId={selectedId}/>
+					<PersonDetails personId={personId}/>
 				</div>
 			</div>
 		</ErrorBoundary>
 	);
 };
 
-export default Page;
+export default PeoplePage;
