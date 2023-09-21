@@ -1,18 +1,25 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Header from "../header";
 import RandomPlanet from "../random-planet";
-import PeoplePage from "../people-page";
+import SubjectPage from "../subject-page";
 import ErrorButtons from "../error-buttons";
 import {ErrorBoundary} from 'react-error-boundary';
 import ErrorIndicate from "../error-indicate";
+import SwapiService from "../../services/swapi-service";
 
 const App = () => {
 
-	const [personId, setPersonId] = useState(10)
+	const swapiService = new SwapiService()
 
-	const updateSelectedId = (id) => {
-		setPersonId(id)
-	}
+	const {
+		getAllPeople,
+		getPerson,
+		getAllPlanets,
+		getPlanet,
+		getAllStarships,
+		getStarship,
+		getSubjectImage
+	} = swapiService
 
 	return (
 		<ErrorBoundary FallbackComponent={ErrorIndicate}>
@@ -20,7 +27,24 @@ const App = () => {
 			<div className="container">
 				<RandomPlanet/>
 				<ErrorButtons/>
-				<PeoplePage personId={personId} updatePersonId={updateSelectedId}/>
+				<SubjectPage
+					getAllData={getAllPeople}
+					getOne={getPerson}
+					getSubjectImage={getSubjectImage}
+					renderItem={(item) => `${item.name} (${item.gender}, ${item.birthYear})`}
+					folder="characters"/>
+				<SubjectPage
+					getAllData={getAllPlanets}
+					getOne={getPlanet}
+					getSubjectImage={getSubjectImage}
+					renderItem={(item) => `${item.name} (diameter: ${item.diameter})`}
+					folder="starships"/>
+				<SubjectPage
+					getAllData={getAllStarships}
+					getOne={getStarship}
+					getSubjectImage={getSubjectImage}
+					renderItem={(item) => `${item.name} (model: ${item.model})`}
+					folder="planets"/>
 			</div>
 		</ErrorBoundary>
 	);

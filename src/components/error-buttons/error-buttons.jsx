@@ -5,7 +5,6 @@ import './error-butons.css'
 const ErrorButtons = () => {
 	const [error, setError] = useState(false)
 
-	console.log('render');
 	if (error) {
 		this.foo.sd = 47
 	}

@@ -1,41 +1,44 @@
 import React, {useEffect, useState} from 'react';
 
 import './item-list.css'
-import SwapiService from "../../services/swapi-service";
 import Spinner from "../spinner";
 import ErrorIndicate from "../error-indicate";
 
 const initialStateItemList = {
-	peopleList: [],
+	itemList: [],
 	loading: true,
 	error: false
 }
 
-const ItemList = ({ updatePersonId }) => {
+const ItemList = (props) => {
 
-	const swapiService = new SwapiService()
+	const { updateSelectedId, getData } = props
 
 	const [stateItemList, setStateItemList] = useState(initialStateItemList)
 
-	const { peopleList, error, loading } = stateItemList
+	const { itemList, error, loading } = stateItemList
 
-	const renderItemList = peopleList.map(({ id, name }) => {
+	const renderItemList = itemList.slice(0, 7).map((item) => {
+		const { id } = item
+
+		const label = props.children(item)
 		return (
-			<li key={id} className="list-group-item list-item" onClick={() => updatePersonId(id)}>
-				{name}
+			<li key={id}
+			    className="list-group-item list-item"
+			    onClick={() => updateSelectedId(id)}
+					>
+				{label}
 			</li>
 		)
 	})
 
 	const onError = () => {
-		console.log('error')
 		setStateItemList({...stateItemList, error: true })
 	}
 	const updatePeopleList = () => {
-		swapiService
-			.getAllPeople()
-			.then((peopleList) => {
-				setStateItemList({ peopleList, error: false, loading: false } )
+		getData()
+			.then((itemList) => {
+				setStateItemList({ itemList, error: false, loading: false } )
 			})
 			.catch(onError)
 	}
