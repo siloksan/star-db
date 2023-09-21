@@ -5,13 +5,12 @@ import SubjectDetails from "../subject-details";
 import './subject-page.css'
 import Row from "../row";
 
-
 const SubjectPage = ({
 	                     getAllData,
 	                     getOne,
-	                     getSubjectImage,
 	                     renderItem,
-	                     folder}) => {
+	                     detailList
+                     }) => {
 
 	const [selectedId, setSelectedId] = useState(10)
 
@@ -30,8 +29,8 @@ const SubjectPage = ({
 	const subjectDetails = (
 		<SubjectDetails selectedId={selectedId}
 		                getOne={getOne}
-		                getSubjectImage={getSubjectImage}
-		                folder={folder}/>
+		                detailList={detailList}/>
+
 	)
 
 	return (

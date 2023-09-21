@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Children, cloneElement} from 'react';
 import './subject-details.css'
 import Spinner from "../spinner";
 import ErrorIndicate from "../error-indicate";
@@ -6,12 +6,12 @@ import ErrorButtons from "../error-buttons";
 import {ErrorBoundary} from "react-error-boundary";
 
 const initialState = {
-	person: {},
+	subject: {},
 	loading: true,
 	error: false
 }
 
-const SubjectDetails = ({selectedId, getOne, getSubjectImage, folder}) => {
+const SubjectDetails = ({ selectedId, getOne, detailList }) => {
 
 	const [state, setState] = useState(initialState)
 
@@ -26,8 +26,8 @@ const SubjectDetails = ({selectedId, getOne, getSubjectImage, folder}) => {
 
 	const updateSubjectInfo = (id) => {
 		getOne(id)
-			.then((person) => {
-				setState({person, loading: false, error: false})
+			.then((subject) => {
+				setState({subject, loading: false, error: false})
 			})
 			.catch(onError)
 	}
@@ -37,13 +37,18 @@ const SubjectDetails = ({selectedId, getOne, getSubjectImage, folder}) => {
 		updateSubjectInfo(selectedId)
 	}, [selectedId])
 
+	const detailListSubject = detailList.map(({ field, label }) => {
+		return (
+			<RowDetail key={field} field={field} label={label}/>
+		)
+	})
 
 	const renderSpinner = loading && !error ? <Spinner/> : null
 	const renderContent = !(loading || error)
 		? <DetailsView
-			infoItem={state.person}
-			getSubjectImage={getSubjectImage}
-			folder={folder}/>
+			infoItem={state.subject}>
+			{detailListSubject}
+		</DetailsView>
 		: null
 	const renderError = error ? <ErrorIndicate/> : null
 
@@ -58,17 +63,10 @@ const SubjectDetails = ({selectedId, getOne, getSubjectImage, folder}) => {
 
 export default SubjectDetails;
 
-const DetailsView = ({infoItem, getSubjectImage, folder}) => {
+const DetailsView = (props) => {
 
-	const {id, name, ...resInfoItem} = infoItem
+	const {name, image, ...resInfoItem} = props.infoItem
 
-	const image = getSubjectImage(folder, id)
-
-	const listDetails = Object.entries(resInfoItem).slice(0, 3).map(([key, value]) => {
-		return (
-			<li key={key} className="list-group-item">{key + ': ' + value}</li>
-		)
-	});
 
 	return (
 		<ErrorBoundary FallbackComponent={ErrorIndicate}>
@@ -81,12 +79,26 @@ const DetailsView = ({infoItem, getSubjectImage, folder}) => {
 					<div className="card-body">
 						<h5 className="card-title">{name}</h5>
 						<ul className="list-group list-group-flush">
-							{listDetails}
+							{/*{listDetails}*/}
+							{
+								Children.map(props.children, (child) => {
+									return cloneElement(child, { resInfoItem })
+							})
+							}
 						</ul>
 					</div>
 					<ErrorButtons/>
 				</div>
 			</div>
 		</ErrorBoundary>
+	)
+}
+
+const RowDetail = ({ resInfoItem, field, label }) => {
+	return (
+		<li className="list-group-item">
+			<span>{label}: </span>
+			<span>{resInfoItem[field]}</span>
+		</li>
 	)
 }

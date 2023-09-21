@@ -6,6 +6,7 @@ import ErrorButtons from "../error-buttons";
 import {ErrorBoundary} from 'react-error-boundary';
 import ErrorIndicate from "../error-indicate";
 import SwapiService from "../../services/swapi-service";
+import {detailsListPerson, detailsListPlanet, detailsListStarship} from "../../utils/detailsList";
 
 const App = () => {
 
@@ -18,7 +19,6 @@ const App = () => {
 		getPlanet,
 		getAllStarships,
 		getStarship,
-		getSubjectImage
 	} = swapiService
 
 	return (
@@ -30,21 +30,18 @@ const App = () => {
 				<SubjectPage
 					getAllData={getAllPeople}
 					getOne={getPerson}
-					getSubjectImage={getSubjectImage}
 					renderItem={(item) => `${item.name} (${item.gender}, ${item.birthYear})`}
-					folder="characters"/>
+					detailList={detailsListPerson}/>
 				<SubjectPage
 					getAllData={getAllPlanets}
 					getOne={getPlanet}
-					getSubjectImage={getSubjectImage}
 					renderItem={(item) => `${item.name} (diameter: ${item.diameter})`}
-					folder="starships"/>
+					detailList={detailsListPlanet}/>
 				<SubjectPage
 					getAllData={getAllStarships}
 					getOne={getStarship}
-					getSubjectImage={getSubjectImage}
 					renderItem={(item) => `${item.name} (model: ${item.model})`}
-					folder="planets"/>
+					detailList={detailsListStarship}/>
 			</div>
 		</ErrorBoundary>
 	);

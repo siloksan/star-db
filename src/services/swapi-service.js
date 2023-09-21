@@ -1,6 +1,7 @@
 export default class SwapiService {
 
 	_apiBase = 'https://swapi.dev/api'
+	_imgBase = 'https://starwars-visualguide.com/assets/img/'
 
 	 getResource = async (url) => {
 		const res = await fetch(`${this._apiBase}${url}`);
@@ -48,40 +49,46 @@ export default class SwapiService {
 	}
 
 	_convertDataPlanet = (planet) => {
+		const id = this._extractId(planet.url)
 		return {
-			id: this._extractId(planet.url),
+			id,
 			name: planet.name,
 			population: planet.population,
-			'rotation period': planet.rotation_period,
+			rotationPeriod: planet.rotation_period,
 			diameter: planet.diameter,
+			image: this.getSubjectImage('planets', id)
 		}
 	}
 	_convertDataPerson = (person) => {
+		const id = this._extractId(person.url)
 		return {
-			id: this._extractId(person.url),
+			id,
 			name: person.name,
 			birthYear: person.birth_year,
-			'eye color': person.eye_color,
+			eyeColor: person.eye_color,
 			gender: person.gender,
 			height: person.height,
 			mass: person.mass,
 			films: person.films,
+			image: this.getSubjectImage('characters', id)
 		}
 	}
 
 	_convertDataStarship = (starShip) => {
+		const id = this._extractId(starShip.url)
 		return {
-			id: this._extractId(starShip.url),
+			id,
 			name: starShip.name,
-			'cargo capacity': starShip.cargo_capacity,
+			cargoCapacity: starShip.cargo_capacity,
 			consumables: starShip.consumables,
-			'hyperdrive rating': starShip.hyperdrive_rating,
+			hyperdriveRating: starShip.hyperdrive_rating,
 			model: starShip.model,
+			image: this.getSubjectImage('starships', id)
 		}
 	}
 
 	getSubjectImage = (folder, id) => {
-		return `https://starwars-visualguide.com/assets/img/${folder}/${id}.jpg`
+		return `${this._imgBase}${folder}/${id}.jpg`
 	}
 }
 

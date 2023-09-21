@@ -57,12 +57,12 @@ const RandomPlanet = () => {
 	);
 };
 
-const PlanetView = ({ planet: { id, name, population, rotationPeriod,diameter } }) => {
+const PlanetView = ({ planet: { name, population, rotationPeriod, diameter, image } }) => {
 
 	return (
 		<div className="row g-0 justify-content-start">
 			<div className="col-md-4 img-card-container">
-				<img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+				<img src={image}
 				     className="img-fluid rounded-start img-card" alt="planet.name"/>
 			</div>
 			<div className="col-md-8 ">
