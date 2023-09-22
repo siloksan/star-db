@@ -1,3 +1,3 @@
-import withDataComponent from './hoc-helper'
+import withDataComponent from './hoc-getData'
 
 export default withDataComponent

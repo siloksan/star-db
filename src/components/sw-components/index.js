@@ -4,9 +4,21 @@ import {
 	PlanetsList
 } from "./item-lists";
 
+import {
+	PersonDetails,
+	StarshipDetails,
+	PlanetDetails,
+} from "./detail-list"
+
+import {PeopleBlock} from "./subject-block";
+
+export {PeopleBlock}
 
 export {
 	PeopleList,
 	StarshipsList,
-	PlanetsList
+	PlanetsList,
+	PersonDetails,
+	StarshipDetails,
+	PlanetDetails,
 }

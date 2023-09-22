@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Spinner from "../spinner";
 import ErrorIndicate from "../error-indicate";
 
-const withDataComponent = (WrappedComponent, getData) => {
+const withDataComponent = (WrappedComponent, getData, timer) => {
 	return (props) => {
 		const [state, setState] = useState({
 			data: [],
@@ -16,17 +16,20 @@ const withDataComponent = (WrappedComponent, getData) => {
 			setState({...state, error: true})
 		}
 
-		const updateComponent = () => {
-			getData()
+		const { selectedId } = props
+
+		const updateComponent = (id) => {
+			getData(id)
 				.then((data) => {
 					setState({data, error: false, loading: false})
 				})
 				.catch(onError)
 		}
 
-		useEffect(() => {
-			updateComponent()
-		}, [])
+
+			useEffect(() => {
+					updateComponent(selectedId)
+			}, [selectedId])
 
 		const renderSpinner = loading && !error ? <Spinner/> : null
 		const renderContent = !(loading || error) ? <WrappedComponent {...props} data={data}/> : null

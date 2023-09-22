@@ -19,7 +19,6 @@ export default class SwapiService {
 
 	getPerson = async (id) => {
 		const person = await this.getResource(`/people/${id}/`)
-		console.log(person);
 		return this._convertDataPerson(person)
 	}
 
@@ -91,8 +90,3 @@ export default class SwapiService {
 		return `${this._imgBase}${folder}/${id}.jpg`
 	}
 }
-
-
-// const person = new SwapiService()
-//
-// 	person.getPerson(5).then(res => console.log(res))

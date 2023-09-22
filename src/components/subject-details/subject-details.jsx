@@ -1,41 +1,13 @@
-import React, {useEffect, useState, Children, cloneElement} from 'react';
+import React, {Children, cloneElement} from 'react';
 import './subject-details.css'
-import Spinner from "../spinner";
+
 import ErrorIndicate from "../error-indicate";
 import ErrorButtons from "../error-buttons";
 import {ErrorBoundary} from "react-error-boundary";
 
-const initialState = {
-	subject: {},
-	loading: true,
-	error: false
-}
+const SubjectDetails = (props) => {
 
-const SubjectDetails = ({ selectedId, getOne, detailList }) => {
-
-	const [state, setState] = useState(initialState)
-
-	const {
-		loading,
-		error
-	} = state
-
-	const onError = () => {
-		setState({...state, error: true})
-	}
-
-	const updateSubjectInfo = (id) => {
-		getOne(id)
-			.then((subject) => {
-				setState({subject, loading: false, error: false})
-			})
-			.catch(onError)
-	}
-
-	useEffect(() => {
-		setState({...state, loading: true})
-		updateSubjectInfo(selectedId)
-	}, [selectedId])
+	const { data, detailList } = props
 
 	const detailListSubject = detailList.map(({ field, label }) => {
 		return (
@@ -43,20 +15,12 @@ const SubjectDetails = ({ selectedId, getOne, detailList }) => {
 		)
 	})
 
-	const renderSpinner = loading && !error ? <Spinner/> : null
-	const renderContent = !(loading || error)
-		? <DetailsView
-			infoItem={state.subject}>
-			{detailListSubject}
-		</DetailsView>
-		: null
-	const renderError = error ? <ErrorIndicate/> : null
-
 	return (
 		<div className="card mb-3 subject-card">
-			{renderSpinner}
-			{renderContent}
-			{renderError}
+			<DetailsView
+				infoItem={data}>
+				{detailListSubject}
+			</DetailsView>
 		</div>
 	);
 };
@@ -64,7 +28,6 @@ const SubjectDetails = ({ selectedId, getOne, detailList }) => {
 const DetailsView = (props) => {
 
 	const {name, image, ...resInfoItem} = props.infoItem
-
 
 	return (
 		<ErrorBoundary FallbackComponent={ErrorIndicate}>
@@ -77,11 +40,10 @@ const DetailsView = (props) => {
 					<div className="card-body">
 						<h5 className="card-title">{name}</h5>
 						<ul className="list-group list-group-flush">
-							{/*{listDetails}*/}
 							{
 								Children.map(props.children, (child) => {
 									return cloneElement(child, { resInfoItem })
-							})
+								})
 							}
 						</ul>
 					</div>
@@ -102,3 +64,4 @@ const RowDetail = ({ resInfoItem, field, label }) => {
 }
 
 export default SubjectDetails;
+

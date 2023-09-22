@@ -1,18 +1,13 @@
 import React from 'react';
 
 import './item-list.css'
-import withDataComponent from "../hoc-helper";
-import SwapiService from "../../services/swapi-service";
-
-const swapiService = new SwapiService()
-
-const { getAllPeople, getAllStarships, getAllPlanets} = swapiService
 
 const ItemList = (props) => {
 
 	const {data, updateSelectedId} = props
 
 	const renderItemList = data.slice(2, 9).map((item) => {
+
 		const {id} = item
 
 		const label = props.children(item)
@@ -41,4 +36,4 @@ const ItemListView = ({renderItemList}) => {
 	)
 }
 
-export default withDataComponent(ItemList, getAllPeople)
+export default ItemList
