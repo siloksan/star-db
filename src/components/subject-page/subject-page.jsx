@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ItemList from "../item-list/item-list";
 import SubjectDetails from "../subject-details";
 
@@ -9,14 +9,12 @@ const SubjectPage = ({
 	                     getAllData,
 	                     getOne,
 	                     renderItem,
-	                     detailList
+	                     detailList,
+	                     updateSelectedId,
+	                     selectedId
                      }) => {
 
-	const [selectedId, setSelectedId] = useState(10)
 
-	const updateSelectedId = (id) => {
-		setSelectedId(id)
-	}
 
 	const itemList = (
 		<ItemList

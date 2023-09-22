@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from "../header";
 import RandomPlanet from "../random-planet";
 import SubjectPage from "../subject-page";
@@ -7,10 +7,17 @@ import {ErrorBoundary} from 'react-error-boundary';
 import ErrorIndicate from "../error-indicate";
 import SwapiService from "../../services/swapi-service";
 import {detailsListPerson, detailsListPlanet, detailsListStarship} from "../../utils/detailsList";
+import {PeopleList} from "../sw-components";
 
 const App = () => {
 
 	const swapiService = new SwapiService()
+
+	const [selectedId, setSelectedId] = useState(10)
+
+	const updateSelectedId = (id) => {
+		setSelectedId(id)
+	}
 
 	const {
 		getAllPeople,
@@ -27,21 +34,34 @@ const App = () => {
 			<div className="container">
 				<RandomPlanet/>
 				<ErrorButtons/>
+				{/*<PeopleList*/}
+				{/*	updateSelectedId={updateSelectedId}*/}
+				{/*	/>*/}
+
 				<SubjectPage
 					getAllData={getAllPeople}
 					getOne={getPerson}
 					renderItem={(item) => `${item.name} (${item.gender}, ${item.birthYear})`}
-					detailList={detailsListPerson}/>
+					detailList={detailsListPerson}
+					selectedId={selectedId}
+					updateSelectedId={updateSelectedId}
+				/>
 				<SubjectPage
 					getAllData={getAllPlanets}
 					getOne={getPlanet}
 					renderItem={(item) => `${item.name} (diameter: ${item.diameter})`}
-					detailList={detailsListPlanet}/>
+					detailList={detailsListPlanet}
+					selectedId={selectedId}
+					updateSelectedId={updateSelectedId}
+				/>
 				<SubjectPage
 					getAllData={getAllStarships}
 					getOne={getStarship}
 					renderItem={(item) => `${item.name} (model: ${item.model})`}
-					detailList={detailsListStarship}/>
+					detailList={detailsListStarship}
+					selectedId={selectedId}
+					updateSelectedId={updateSelectedId}
+				/>
 			</div>
 		</ErrorBoundary>
 	);

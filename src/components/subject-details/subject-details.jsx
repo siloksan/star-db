@@ -61,8 +61,6 @@ const SubjectDetails = ({ selectedId, getOne, detailList }) => {
 	);
 };
 
-export default SubjectDetails;
-
 const DetailsView = (props) => {
 
 	const {name, image, ...resInfoItem} = props.infoItem
@@ -102,3 +100,5 @@ const RowDetail = ({ resInfoItem, field, label }) => {
 		</li>
 	)
 }
+
+export default SubjectDetails;
