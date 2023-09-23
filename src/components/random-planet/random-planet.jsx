@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {PlanetDetails} from "../sw-components";
-import {detailsListPlanet} from "../../utils/detailsList";
+import {AttributesContext} from "../app/app";
 
 import './random-planet.css'
 
 const RandomPlanet = () => {
 
 	const [state, setState] = useState(7)
+	const { detailsListPlanet } = useContext(AttributesContext)
 
 	useEffect(() => {
 		const id = Math.floor(Math.random() * 17) + 2

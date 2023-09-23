@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Spinner from "../spinner";
 import ErrorIndicate from "../error-indicate";
+import {SwapiServiceContext} from "../app";
 
-const withDataComponent = (WrappedComponent, getData, timer) => {
+const withDataComponent = (WrappedComponent, mapMethodsToProps) => {
+
 	return (props) => {
 		const [state, setState] = useState({
 			data: [],
@@ -10,7 +12,10 @@ const withDataComponent = (WrappedComponent, getData, timer) => {
 			error: false
 		})
 
+		const swapiService = useContext(SwapiServiceContext)
+
 		const { data, loading, error } = state
+		const getData = mapMethodsToProps(swapiService)
 
 		const onError = () => {
 			setState({...state, error: true})
@@ -21,6 +26,7 @@ const withDataComponent = (WrappedComponent, getData, timer) => {
 		const updateComponent = (id) => {
 			getData(id)
 				.then((data) => {
+					console.log(data);
 					setState({data, error: false, loading: false})
 				})
 				.catch(onError)

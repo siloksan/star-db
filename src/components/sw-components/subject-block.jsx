@@ -1,22 +1,21 @@
 import {PeopleList, PlanetsList, StarshipsList} from "./item-lists";
 import {PersonDetails, PlanetDetails, StarshipDetails} from "./detail-list";
-import {detailsListPerson, detailsListPlanet, detailsListStarship} from "../../utils/detailsList";
+
 import Row from "../row";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import {AttributesContext} from "../app";
 
 export const PeopleBlock = () => {
 
 	const [selectedId, setSelectedId] = useState(10)
+	const { detailsListPerson } = useContext(AttributesContext)
 
 	const updateSelectedId = (id) => {
 		setSelectedId(id)
 	}
 
 	const itemList = (
-		<PeopleList
-			updateSelectedId={updateSelectedId}>
-			{(item) => `${item.name} (${item.gender}, ${item.birthYear})`}
-		</PeopleList>
+		<PeopleList updateSelectedId={updateSelectedId}/>
 	)
 
 	const subjectDetails = (
@@ -27,20 +26,18 @@ export const PeopleBlock = () => {
 		<Row leftBlock={itemList} rightBlock={subjectDetails}/>
 	)
 }
-
+//============================================================//
 export const StarshipBlock = () => {
 
 	const [selectedId, setSelectedId] = useState(10)
+	const { detailsListStarship } = useContext(AttributesContext)
 
 	const updateSelectedId = (id) => {
 		setSelectedId(id)
 	}
 
 	const itemList = (
-		<StarshipsList
-			updateSelectedId={updateSelectedId}>
-			{(item) => `${item.name} (model: ${item.model})`}
-		</StarshipsList>
+		<StarshipsList updateSelectedId={updateSelectedId}/>
 	)
 
 	const subjectDetails = (
@@ -51,20 +48,18 @@ export const StarshipBlock = () => {
 		<Row leftBlock={itemList} rightBlock={subjectDetails}/>
 	)
 }
-
+//============================================================//
 export const PlanetBlock = () => {
 
 	const [selectedId, setSelectedId] = useState(10)
+	const { detailsListPlanet } = useContext(AttributesContext)
 
 	const updateSelectedId = (id) => {
 		setSelectedId(id)
 	}
 
 	const itemList = (
-		<PlanetsList
-			updateSelectedId={updateSelectedId}>
-			{(item) => `${item.name} (diameter: ${item.diameter})`}
-		</PlanetsList>
+		<PlanetsList updateSelectedId={updateSelectedId}/>
 	)
 
 	const subjectDetails = (

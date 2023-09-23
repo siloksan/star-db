@@ -10,9 +10,12 @@ import {
 	PlanetDetails,
 } from "./detail-list"
 
-import {PeopleBlock} from "./subject-block";
+import {
+	PeopleBlock,
+	PlanetBlock,
+	StarshipBlock
+} from "./subject-block";
 
-export {PeopleBlock}
 
 export {
 	PeopleList,
@@ -21,4 +24,7 @@ export {
 	PersonDetails,
 	StarshipDetails,
 	PlanetDetails,
+	PeopleBlock,
+	PlanetBlock,
+	StarshipBlock
 }
