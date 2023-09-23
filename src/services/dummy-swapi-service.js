@@ -7,7 +7,7 @@ export default class DummySwapiService {
 			gender: 'male',
 			birthYear: 'long ago',
 			eyeColor: 'dark brown',
-			image: `https://placeimg.com/400/500/people`
+			image: `https://starwars-visualguide.com/assets/img/starships/10.jpg`
 		},
 
 		{
@@ -16,7 +16,7 @@ export default class DummySwapiService {
 			gender: 'male',
 			birthYear: 'long ago',
 			eyeColor: 'dark brown',
-			image: `https://placeimg.com/400/500/people`
+			image: `https://starwars-visualguide.com/assets/img/starships/10.jpg`
 		}
 	];
 
@@ -27,7 +27,7 @@ export default class DummySwapiService {
 			population: '7.530.000.000',
 			rotationPeriod: '23 hours 56 seconds',
 			diameter: '12.742 km',
-			image: `https://placeimg.com/400/500/people`
+			image: `https://starwars-visualguide.com/assets/img/starships/10.jpg`
 		},
 		{
 			id: 2,
@@ -35,7 +35,7 @@ export default class DummySwapiService {
 			population: 'not known',
 			rotationPeriod: '243 days',
 			diameter: '12.104 km',
-			image: `https://placeimg.com/400/500/people`
+			image: `https://starwars-visualguide.com/assets/img/starships/10.jpg`
 		}
 	];
 
@@ -50,7 +50,19 @@ export default class DummySwapiService {
 			crew: 1000,
 			passengers: 50,
 			cargoCapacity: 100,
-			image: `https://placeimg.com/400/500/people`
+			image: `https://starwars-visualguide.com/assets/img/starships/10.jpg`
+		},
+		{
+			id: 2,
+			name: 'asterprise [TEST DATA]',
+			model: 'Nas1-C',
+			manufacturer: 'Norashipbuilding',
+			costInCredits: 'not known',
+			length: 'approx 300 meters',
+			crew: 1000,
+			passengers: 50,
+			cargoCapacity: 100,
+			image: `https://starwars-visualguide.com/assets/img/starships/10.jpg`
 		}
 	];
 

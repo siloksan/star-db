@@ -1,8 +1,5 @@
-import withDataComponent from "../hoc-helper";
-import SwapiService from "../../services/swapi-service";
+import {withDataComponent, withSwapiServiceComponent} from "../hoc-helper";
 import SubjectDetails from "../subject-details";
-
-// const swapiService = new SwapiService()
 
 const mapPersonMethodsToProps = (swapiService) => {
 	return {
@@ -22,12 +19,9 @@ const mapStarshipMethodsToProps = (swapiService) => {
 	};
 };
 
-// const { getPerson , getStarship, getPlanet} = swapiService
-
-const PersonDetails = withDataComponent(SubjectDetails, mapPersonMethodsToProps)
-const StarshipDetails = withDataComponent(SubjectDetails, mapPlanetMethodsToProps)
-const PlanetDetails = withDataComponent(SubjectDetails, mapStarshipMethodsToProps)
-
+const PersonDetails = withSwapiServiceComponent(withDataComponent(SubjectDetails), mapPersonMethodsToProps)
+const StarshipDetails = withSwapiServiceComponent(withDataComponent(SubjectDetails), mapStarshipMethodsToProps)
+const PlanetDetails = withSwapiServiceComponent(withDataComponent(SubjectDetails), mapPlanetMethodsToProps)
 
 export {
 	PersonDetails,

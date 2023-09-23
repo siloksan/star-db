@@ -1,9 +1,8 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Spinner from "../spinner";
 import ErrorIndicate from "../error-indicate";
-import {SwapiServiceContext} from "../app";
 
-const withDataComponent = (WrappedComponent, mapMethodsToProps) => {
+const withDataComponent = (WrappedComponent) => {
 
 	return (props) => {
 		const [state, setState] = useState({
@@ -12,10 +11,9 @@ const withDataComponent = (WrappedComponent, mapMethodsToProps) => {
 			error: false
 		})
 
-		const swapiService = useContext(SwapiServiceContext)
-
 		const { data, loading, error } = state
-		const getData = mapMethodsToProps(swapiService)
+
+		const getData = props.getData
 
 		const onError = () => {
 			setState({...state, error: true})
@@ -26,7 +24,6 @@ const withDataComponent = (WrappedComponent, mapMethodsToProps) => {
 		const updateComponent = (id) => {
 			getData(id)
 				.then((data) => {
-					console.log(data);
 					setState({data, error: false, loading: false})
 				})
 				.catch(onError)
@@ -35,7 +32,7 @@ const withDataComponent = (WrappedComponent, mapMethodsToProps) => {
 
 			useEffect(() => {
 					updateComponent(selectedId)
-			}, [selectedId])
+			}, [selectedId, getData])
 
 		const renderSpinner = loading && !error ? <Spinner/> : null
 		const renderContent = !(loading || error) ? <WrappedComponent {...props} data={data}/> : null

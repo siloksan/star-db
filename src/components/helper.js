@@ -1,6 +1,7 @@
 const mapToProps = (service) => {
+	// console.log('service: ', service);
 	return {
-		getAnyData: service.getTheData
+		getData: service.getTheData
 	};
 };
 
@@ -21,22 +22,23 @@ class CustomService {
 }
 
 const withData = (Wrapped, mapMethods) => {
+	const swapiService = new CustomService()
+	// console.log('mapMethods: ', mapMethods);
+	const getData = mapMethods(swapiService)
+	console.log('getData: ', getData);
+	let state = {}
+		getData()
+			.then((data) => {
+				// console.log('data: ', data);
+				state = data
+				// console.log('state: ', state);
+			})
 
-	return () => {
-		let state = {}
-
-		const swapiService = new CustomService()
-
-		const getData = mapMethods(swapiService)
-
-
-		const update = () => {
-			getData()
-				.then((data) => {
-					state = data
-				})
-		}
-
-		return update()
-	}
+	return Wrapped(state)
 }
+
+const list = (prop) => prop
+
+const listWithData = withData(list, mapToProps)
+
+console.log('listWithData: ', listWithData.id);

@@ -28,6 +28,9 @@ const Header = ({ onServiceChange }) => {
 									onClick={onServiceChange}>Change Service</button>
 							</li>
 						</ul>
+						<button
+							className="btn btn-info header-btn"
+							onClick={onServiceChange}>Change Service</button>
 					</div>
 				</div>
 			</nav>

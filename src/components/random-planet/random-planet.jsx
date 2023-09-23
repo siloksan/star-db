@@ -6,21 +6,21 @@ import './random-planet.css'
 
 const RandomPlanet = () => {
 
-	const [state, setState] = useState(7)
+	const [id, setId] = useState(7)
 	const { detailsListPlanet } = useContext(AttributesContext)
 
 	useEffect(() => {
 		const id = Math.floor(Math.random() * 17) + 2
-		const interval = setInterval(() => setState(id), 10000)
+		const interval = setInterval(() => setId(id), 10000)
 
 		return () => clearInterval(interval)
-	}, [state])
+	}, [id])
 
 	return (
 		<div className="card mb-3 item-card">
 			<PlanetDetails
 				detailList={detailsListPlanet}
-				selectedId={state}/>
+				selectedId={id}/>
 		</div>
 	);
 };

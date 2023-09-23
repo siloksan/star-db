@@ -1,6 +1,13 @@
-import {PeopleList, PlanetsList, StarshipsList} from "./item-lists";
-import {PersonDetails, PlanetDetails, StarshipDetails} from "./detail-list";
-
+import {
+	PeopleList,
+	PlanetsList,
+	StarshipsList
+} from "./item-lists";
+import {
+	PersonDetails,
+	PlanetDetails,
+	StarshipDetails
+} from "./detail-list";
 import Row from "../row";
 import React, {useContext, useState} from "react";
 import {AttributesContext} from "../app";
