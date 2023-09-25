@@ -1,4 +1,5 @@
 import {
+	compose,
 	withDataComponent,
 	withSwapiServiceComponent,
 	withChildComponent
@@ -27,18 +28,21 @@ const renderPersonAttributes = (item) => `${item.name} (${item.gender}, ${item.b
 const renderStarshipAttributes = (item) => `${item.name} (model: ${item.model})`
 const renderPlanetAttributes = (item) => `${item.name} (diameter: ${item.diameter})`
 
-const PeopleList = withSwapiServiceComponent(mapPersonMethodsToProps)(
-	withDataComponent(
-		withChildComponent(renderPersonAttributes)(
-			ItemList)))
-const StarshipsList = withSwapiServiceComponent(mapStarshipMethodsToProps)(
-	withDataComponent(
-		withChildComponent(renderStarshipAttributes)(
-			ItemList)))
-const PlanetsList = withSwapiServiceComponent(mapPlanetMethodsToProps)(
-	withDataComponent(
-		withChildComponent(renderPlanetAttributes)(
-			ItemList)))
+const PeopleList = compose(
+	withSwapiServiceComponent(mapPersonMethodsToProps),
+	withDataComponent,
+	withChildComponent(renderPersonAttributes)
+)(ItemList)
+const StarshipsList = compose(
+	withSwapiServiceComponent(mapStarshipMethodsToProps),
+	withDataComponent,
+	withChildComponent(renderStarshipAttributes)
+)(ItemList)
+const PlanetsList = compose(
+	withSwapiServiceComponent(mapPlanetMethodsToProps),
+	withDataComponent,
+	withChildComponent(renderPlanetAttributes)
+)(ItemList)
 
 export {
 	PeopleList,

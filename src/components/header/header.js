@@ -22,11 +22,6 @@ const Header = ({ onServiceChange }) => {
 							<li className="nav-item">
 								<a className="nav-link" href="#">Starships</a>
 							</li>
-							<li className="nav-item">
-								<button
-									className="btn btn-info header-btn"
-									onClick={onServiceChange}>Change Service</button>
-							</li>
 						</ul>
 						<button
 							className="btn btn-info header-btn"

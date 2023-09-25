@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './item-list.css'
+import PropTypes from "prop-types";
 
 const ItemList = (props) => {
 
@@ -34,6 +35,16 @@ const ItemListView = ({renderItemList}) => {
 			{renderItemList}
 		</ul>
 	)
+}
+
+ItemList.defaultProps = {
+	updateSelectedId: () => {}
+}
+
+ItemList.propTypes = {
+	data: PropTypes.arrayOf(PropTypes.object).isRequired,
+	updateSelectedId: PropTypes.func,
+	children: PropTypes.func.isRequired
 }
 
 export default ItemList

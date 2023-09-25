@@ -1,17 +1,20 @@
 import React, {useEffect, useState, useContext} from 'react';
 import {PlanetDetails} from "../sw-components";
-import {AttributesContext} from "../app/app";
+import {AttributesContext} from "../app";
+import PropTypes from "prop-types";
 
 import './random-planet.css'
 
-const RandomPlanet = () => {
+const RandomPlanet = (prop) => {
 
 	const [id, setId] = useState(7)
 	const { detailsListPlanet } = useContext(AttributesContext)
 
+	const timer = prop.timer
+
 	useEffect(() => {
 		const id = Math.floor(Math.random() * 17) + 2
-		const interval = setInterval(() => setId(id), 10000)
+		const interval = setInterval(() => setId(id), timer)
 
 		return () => clearInterval(interval)
 	}, [id])
@@ -24,5 +27,14 @@ const RandomPlanet = () => {
 		</div>
 	);
 };
+
+RandomPlanet.defaultProps = {
+	timer: 10000
+}
+
+
+RandomPlanet.propTypes = {
+	timer: PropTypes.number
+}
 
 export default RandomPlanet;

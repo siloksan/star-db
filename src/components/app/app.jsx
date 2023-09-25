@@ -36,7 +36,7 @@ const App = () => {
 			<div className="container">
 				<SwapiServiceContext.Provider value={swapiService}>
 					<AttributesContext.Provider value={attributes}>
-						<RandomPlanet/>
+						<RandomPlanet />
 						<ErrorButtons/>
 						<PeopleBlock/>
 						<StarshipBlock/>
