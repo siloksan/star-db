@@ -1,6 +1,6 @@
 import React from "react";
 
-const withChildComponent = (WrappedComponent, child) => {
+const withChildComponent = (child) => (WrappedComponent) => {
 	return (props) => {
 		return (
 			<WrappedComponent {...props}>

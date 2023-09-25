@@ -19,9 +19,9 @@ const mapStarshipMethodsToProps = (swapiService) => {
 	};
 };
 
-const PersonDetails = withSwapiServiceComponent(withDataComponent(SubjectDetails), mapPersonMethodsToProps)
-const StarshipDetails = withSwapiServiceComponent(withDataComponent(SubjectDetails), mapStarshipMethodsToProps)
-const PlanetDetails = withSwapiServiceComponent(withDataComponent(SubjectDetails), mapPlanetMethodsToProps)
+const PersonDetails = withSwapiServiceComponent(mapPersonMethodsToProps)(withDataComponent(SubjectDetails))
+const StarshipDetails = withSwapiServiceComponent(mapStarshipMethodsToProps)(withDataComponent(SubjectDetails))
+const PlanetDetails = withSwapiServiceComponent(mapPlanetMethodsToProps)(withDataComponent(SubjectDetails))
 
 export {
 	PersonDetails,

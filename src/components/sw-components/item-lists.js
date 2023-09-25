@@ -27,15 +27,18 @@ const renderPersonAttributes = (item) => `${item.name} (${item.gender}, ${item.b
 const renderStarshipAttributes = (item) => `${item.name} (model: ${item.model})`
 const renderPlanetAttributes = (item) => `${item.name} (diameter: ${item.diameter})`
 
-const PeopleList = withSwapiServiceComponent(withDataComponent(
-	withChildComponent(ItemList,renderPersonAttributes)),
-	mapPersonMethodsToProps)
-const StarshipsList = withSwapiServiceComponent(withDataComponent(
-		withChildComponent(ItemList,renderStarshipAttributes)),
-	mapStarshipMethodsToProps)
-const PlanetsList = withSwapiServiceComponent(withDataComponent(
-		withChildComponent(ItemList,renderPlanetAttributes)),
-	mapPlanetMethodsToProps)
+const PeopleList = withSwapiServiceComponent(mapPersonMethodsToProps)(
+	withDataComponent(
+		withChildComponent(renderPersonAttributes)(
+			ItemList)))
+const StarshipsList = withSwapiServiceComponent(mapStarshipMethodsToProps)(
+	withDataComponent(
+		withChildComponent(renderStarshipAttributes)(
+			ItemList)))
+const PlanetsList = withSwapiServiceComponent(mapPlanetMethodsToProps)(
+	withDataComponent(
+		withChildComponent(renderPlanetAttributes)(
+			ItemList)))
 
 export {
 	PeopleList,
