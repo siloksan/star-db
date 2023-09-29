@@ -1,16 +1,12 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState} from 'react';
 import {PlanetDetails} from "../sw-components";
-import {AttributesContext} from "../app";
 import PropTypes from "prop-types";
 
 import './random-planet.css'
 
-const RandomPlanet = (prop) => {
+const RandomPlanet = ({ timer, detailList }) => {
 
 	const [id, setId] = useState(7)
-	const { detailsListPlanet } = useContext(AttributesContext)
-
-	const timer = prop.timer
 
 	useEffect(() => {
 		const id = Math.floor(Math.random() * 17) + 2
@@ -22,7 +18,7 @@ const RandomPlanet = (prop) => {
 	return (
 		<div className="card mb-3 item-card">
 			<PlanetDetails
-				detailList={detailsListPlanet}
+				detailList={detailList}
 				selectedId={id}/>
 		</div>
 	);

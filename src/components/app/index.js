@@ -1,5 +1,5 @@
 import App from "./app";
-import {AttributesContext, SwapiServiceContext} from "./app";
+import {SwapiServiceContext} from "./app";
 
-export {AttributesContext, SwapiServiceContext}
+export {SwapiServiceContext}
 export default App

@@ -3,30 +3,23 @@ import {
 	PlanetsList,
 	StarshipsList
 } from "./item-lists";
-import {
-	PersonDetails,
-	PlanetDetails,
-	StarshipDetails
-} from "./detail-list";
+
+import React from "react";
+import {useNavigate, useParams} from "react-router-dom";
 import Row from "../row";
-import React, {useContext, useState} from "react";
-import {AttributesContext} from "../app";
+import {PersonDetails} from "./detail-list";
 
-export const PeopleBlock = () => {
+export const PeopleBlock = ({ detailList }) => {
 
-	const [selectedId, setSelectedId] = useState(10)
-	const { detailsListPerson } = useContext(AttributesContext)
-
-	const updateSelectedId = (id) => {
-		setSelectedId(id)
-	}
+	const navigate = useNavigate()
+	const { id } = useParams()
 
 	const itemList = (
-		<PeopleList updateSelectedId={updateSelectedId}/>
+		<PeopleList updateSelectedId={(id) => navigate(id)} />
 	)
 
 	const subjectDetails = (
-		<PersonDetails selectedId={selectedId} detailList={detailsListPerson}/>
+		<PersonDetails detailList={detailList} selectedId={id}/>
 	)
 
 	return (
@@ -36,44 +29,18 @@ export const PeopleBlock = () => {
 //============================================================//
 export const StarshipBlock = () => {
 
-	const [selectedId, setSelectedId] = useState(10)
-	const { detailsListStarship } = useContext(AttributesContext)
-
-	const updateSelectedId = (id) => {
-		setSelectedId(id)
-	}
-
-	const itemList = (
-		<StarshipsList updateSelectedId={updateSelectedId}/>
-	)
-
-	const subjectDetails = (
-		<StarshipDetails selectedId={selectedId} detailList={detailsListStarship}/>
-	)
+	const navigate = useNavigate()
 
 	return (
-		<Row leftBlock={itemList} rightBlock={subjectDetails}/>
+		<StarshipsList updateSelectedId={(id) => navigate(id)}/>
 	)
 }
 //============================================================//
 export const PlanetBlock = () => {
 
-	const [selectedId, setSelectedId] = useState(10)
-	const { detailsListPlanet } = useContext(AttributesContext)
-
-	const updateSelectedId = (id) => {
-		setSelectedId(id)
-	}
-
-	const itemList = (
-		<PlanetsList updateSelectedId={updateSelectedId}/>
-	)
-
-	const subjectDetails = (
-		<PlanetDetails selectedId={selectedId} detailList={detailsListPlanet}/>
-	)
+	const navigate = useNavigate()
 
 	return (
-		<Row leftBlock={itemList} rightBlock={subjectDetails}/>
+		<PlanetsList updateSelectedId={(id) => navigate(id)}/>
 	)
 }

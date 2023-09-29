@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Spinner from "../spinner";
 import ErrorIndicate from "../error-indicate";
+import {useParams} from "react-router-dom";
 
 const withDataComponent = (WrappedComponent) => {
 
@@ -11,6 +12,8 @@ const withDataComponent = (WrappedComponent) => {
 			error: false
 		})
 
+		const { id } = useParams()
+
 		const { data, loading, error } = state
 
 		const getData = props.getData
@@ -19,20 +22,24 @@ const withDataComponent = (WrappedComponent) => {
 			setState({...state, error: true})
 		}
 
-		const { selectedId } = props
+		const selectedId = props.selectedId ? props.selectedId : null
 
 		const updateComponent = (id) => {
+			let canceled = false
 			getData(id)
 				.then((data) => {
-					setState({data, error: false, loading: false})
+					!canceled && setState({data, error: false, loading: false})
 				})
 				.catch(onError)
+
+			return () => canceled = true
 		}
 
+		const subjectId = id ? id : selectedId
 
-			useEffect(() => {
-					updateComponent(selectedId)
-			}, [selectedId, getData])
+		useEffect(() => {
+					updateComponent(subjectId)
+			}, [subjectId, getData])
 
 		const renderSpinner = loading && !error ? <Spinner/> : null
 		const renderContent = !(loading || error) ? <WrappedComponent {...props} data={data}/> : null
