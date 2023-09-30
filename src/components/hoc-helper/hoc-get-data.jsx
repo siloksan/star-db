@@ -46,11 +46,11 @@ const withDataComponent = (WrappedComponent) => {
 		const renderError = error ? <ErrorIndicate/> : null
 
 		return (
-			<div className="card mb-3 list-items">
+			<>
 				{renderSpinner}
 				{renderContent}
 				{renderError}
-			</div>
+			</>
 		);
 	}
 }

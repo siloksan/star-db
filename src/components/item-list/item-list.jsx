@@ -23,15 +23,13 @@ const ItemList = (props) => {
 	})
 
 	return (
-		<div className="card mb-3 list-items">
 			<ItemListView renderItemList={renderItemList}/>
-		</div>
 	);
 };
 
 const ItemListView = ({renderItemList}) => {
 	return (
-		<ul className="list-group list-group-flush">
+		<ul className="list-group list-group-flush card list-items">
 			{renderItemList}
 		</ul>
 	)

@@ -16,11 +16,9 @@ const RandomPlanet = ({ timer, detailList }) => {
 	}, [id])
 
 	return (
-		<div className="card mb-3 item-card">
 			<PlanetDetails
 				detailList={detailList}
 				selectedId={id}/>
-		</div>
 	);
 };
 

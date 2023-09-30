@@ -16,7 +16,7 @@ const SubjectDetails = (props) => {
 	})
 
 	return (
-		<div className="card mb-3 subject-card">
+		<div className="card mb-3">
 			<DetailsView
 				infoItem={data}>
 				{detailListSubject}
@@ -31,10 +31,10 @@ const DetailsView = (props) => {
 
 	return (
 		<ErrorBoundary FallbackComponent={ErrorIndicate}>
-			<div className="row g-0">
+			<div className="row g-0 subject-card">
 				<div className="col-md-4 img-card-container">
 					<img src={image}
-					     className="img-fluid rounded-start img-card" alt="planet.name"/>
+					     className="img-fluid rounded-start img-card" alt={name}/>
 				</div>
 				<div className="col-md-8">
 					<div className="card-body">

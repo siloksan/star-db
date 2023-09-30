@@ -9,7 +9,7 @@ import {Route, Routes} from "react-router-dom";
 const Row = ({leftBlock, rightBlock}) => {
 	return (
 		<ErrorBoundary FallbackComponent={ErrorIndicate}>
-			<div className="row mb2 subject-page">
+			<div className="row mb2">
 				<div className="col">
 					{leftBlock}
 				</div>
