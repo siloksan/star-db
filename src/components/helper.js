@@ -5,7 +5,7 @@ import Row from "./row";
 import SwapiService from "../services/swapi-service";
 import DummySwapiService from "../services/dummy-swapi-service";
 import {ErrorBoundary} from "react-error-boundary";
-import ErrorIndicate from "./error-indicate";
+import ErrorIndicate from "../../../react-redux-store/src/components/error-indicator";
 import Header from "./header";
 import RandomPlanet from "./random-planet";
 import attributes from "../utils/detailsList";

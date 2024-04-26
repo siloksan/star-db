@@ -4,6 +4,7 @@ import './error-indicate.css'
 import iconError from './icon-error.png'
 
 const ErrorIndicate = ({ error, resetErrorBoundary }) => {
+	console.log('error: ', error);
 	return (
 		<div className="row g-0 justify-content-center error-block">
 			<img className="error-icon" src={iconError} alt="error icon"/>

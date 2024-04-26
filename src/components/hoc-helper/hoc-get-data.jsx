@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Spinner from "../spinner";
-import ErrorIndicate from "../error-indicate";
+import ErrorIndicate from '../error-indicate';
 import {useParams} from "react-router-dom";
 
 const withDataComponent = (WrappedComponent) => {

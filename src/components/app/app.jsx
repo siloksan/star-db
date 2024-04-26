@@ -22,7 +22,7 @@ export const SwapiServiceContext = createContext(null)
 
 const App = () => {
 
-	const [swapiService, setSwapiService] = useState(new SwapiService())
+	const [swapiService, setSwapiService] = useState(new DummySwapiService())
 	const [isLogged, setIsLogged] = useState(false)
 
 	const onLogin = ({ password, counter }) => {

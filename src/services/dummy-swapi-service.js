@@ -75,6 +75,7 @@ export default class DummySwapiService {
 	};
 
 	getAllPlanets = async () => {
+		console.log('this._planets: ', this._planets);
 		return this._planets;
 	};
 

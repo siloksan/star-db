@@ -1,13 +1,14 @@
 import React, {Children, cloneElement} from 'react';
 import './subject-details.css'
 
-import ErrorIndicate from "../error-indicate";
+import ErrorIndicate from "../error-indicate/index";
 import ErrorButtons from "../error-buttons";
 import {ErrorBoundary} from "react-error-boundary";
 
 const SubjectDetails = (props) => {
 
 	const { data, detailList } = props
+	console.log('data: ', data);
 
 	const detailListSubject = detailList.map(({ field, label }) => {
 		return (
